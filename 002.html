@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<ul id="list">
+    <li>
+        <input type="button" value="-">
+        <strong>0</strong>
+        <input type="button" value="+">
+        单价：<em>12.5</em>
+        元小计：<span>0元</span>
+    </li>
+    <li>
+        <input type="button" value="-">
+        <strong>0</strong>
+        <input type="button" value="+">
+        单价：<em>10.5</em>
+        元小计：<span>0元</span>
+    </li>
+    <li>
+        <input type="button" value="-">
+        <strong>0</strong>
+        <input type="button" value="+">
+        单价：<em>8</em>
+        元小计：<span>0元</span>
+    </li>
+    <li>
+        <input type="button" value="-">
+        <strong>0</strong>
+        <input type="button" value="+">
+        单价：<em>8.5</em>
+        元小计：<span>0元</span>
+    </li>
+    <li>
+        <input type="button" value="-">
+        <strong>0</strong>
+        <input type="button" value="+">
+        单价：<em>14.5</em>
+        元小计：<span>0元</span>
+    </li>
+</ul>
+<div id="total">
+    商品合计：<span>0</span>件<br/>
+    共花费了:<span>0元</span><br/>
+    其中最贵的商品单价是：<span>0</span>元
+
+
+</div>
+
+</body>
+<script src='myTools.js'></script>
+<script>
+    var oList = $("#list");
+    var aLi = $("li", oList);
+    var oTotal = $('#total');
+    var sum = $('span', oTotal)[0];
+    var sub = $('span', oTotal)[1];
+    var total = 0;
+
+    var aaa = [12.5, 10.5, 8, 8.5, 14.5];
+
+
+    for (var i = 0; i < aLi.length; i++) {
+//        aLi[i].index = i;
+        fn(aLi[i]);
+
+    }
+
+    function fn(m) {
+        //获取相关元素
+        var oList = $('#list', m);
+        var aJian = $('input', m)[0];
+        var aJia = $('input', m)[1];
+        var aStr = $('strong', m)[0];
+        var aEm = $('em', m)[0];
+        var aSpan = $('span', m)[0];
+
+        //点击 +   按钮
+
+        var num = 0;
+
+        aJia.onclick = function () {
+            num++;
+            total++;
+            aStr.innerHTML = num;
+            aSpan.innerHTML = aEm.innerHTML * num +'元';
+            this.index = aStr.innerHTML;
+            sum.innerHTML = total;
+            sub.innerHTML = aSpan.innerHTML;
+        };
+        //点击  -  按钮
+        aJian.onclick = function () {
+            //当 str 不等于 0  时
+            if (num != 0) {
+                num -= 1;
+                total--;
+                aStr.innerHTML = num;
+                aSpan.innerHTML = aEm.innerHTML * num + '元';
+            }
+            sum.innerHTML = total;
+            sub.innerHTML = aSpan.innerHTML;
+        };
+    }
+
+</script>
+</html>
